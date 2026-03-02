@@ -10,8 +10,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --no-cache-dir \
     torch==2.2.2 --index-url https://download.pytorch.org/whl/cpu
 RUN pip install --no-cache-dir \
-    transformers==4.38.2 \
-    sentence-transformers==2.5.1 \
+    transformers==4.44.2 \
+    sentence-transformers==3.4.1 \
+    tokenizers>=0.20.0 \
     streamlit==1.30.0 \
     fastapi==0.109.0 \
     uvicorn==0.27.0 \
