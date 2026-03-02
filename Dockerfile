@@ -4,7 +4,7 @@ WORKDIR /app
 
 # 1. System packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc g++ curl && rm -rf /var/lib/apt/lists/*
+    gcc g++ curl git git-lfs && rm -rf /var/lib/apt/lists/*
 
 # 2. Python dependencies (CPU-only PyTorch)
 RUN pip install --no-cache-dir \
@@ -17,24 +17,26 @@ RUN pip install --no-cache-dir \
     uvicorn==0.27.0 \
     chromadb==0.4.24 \
     rank-bm25==0.2.2 \
-    openai httpx python-dotenv requests
+    openai httpx python-dotenv requests numpy
 
 # 3. Copy project files
 COPY . .
 
-# 4. Prepare data directory
-RUN mkdir -p /app/ipard_rag/data && \
-    cp chroma.sqlite3 /app/ipard_rag/data/ 2>/dev/null || true && \
-    cp embeddings.npy /app/ipard_rag/data/ 2>/dev/null || true
+# 4. Build ChromaDB from chunks + embeddings
+RUN mkdir -p /app/ipard_rag/data/chromadb && \
+    cd /app/ipard_rag/src && \
+    python build_db.py
 
-# 5. User permissions (required by HF Spaces)
+# 5. Copy start script and set permissions
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
+# 6. User permissions (required by HF Spaces)
 RUN useradd -m -u 1000 user && chown -R user:user /app
 USER user
 
-# 6. Environment
+# 7. Environment
 ENV PYTHONPATH="/app/ipard_rag/src:/app"
 EXPOSE 7860
 
-# 7. Start script: FastAPI in background, wait for it, then Streamlit
-COPY start.sh /app/start.sh
 CMD ["bash", "/app/start.sh"]
