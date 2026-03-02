@@ -1,3 +1,13 @@
+---
+title: IPARD AI Assistant
+emoji: 🌾
+colorFrom: green
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # 🌾 IPARD III AI Assistant
 
 An AI-powered **Retrieval-Augmented Generation (RAG)** assistant for exploring Turkey's IPARD III rural development program documents. It uses hybrid search with verified sources to deliver accurate, citation-backed answers.
