@@ -1,4 +1,4 @@
-﻿# Veritabanı ve büyük veri dosyaları
+# Veritabani ve b�y�k veri dosyalari
 **/chromadb/
 **/chunks/
 **/raw_pdfs/
@@ -16,10 +16,10 @@ __pycache__/
 .idea/
 .env
 
-# Word dosyaları
+# Word dosyalari
 *.docx
 *.doc
 
-# Data klasörü
-**/data/
+# Data klas�r�
+# **/data/
 echo "*.pdf" >> .gitignore
