@@ -1,0 +1,17 @@
+# ── Stage 1: Builder ──────────────────
+FROM python:3.11-slim AS builder
+WORKDIR /build
+RUN apt-get update && apt-get install -y --no-install-recommends gcc g++ && rm -rf /var/lib/apt/lists/*
+COPY ipard_rag/requirements.txt .
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+# ── Stage 2: Runtime ──────────────────
+FROM python:3.11-slim AS runtime
+WORKDIR /app
+COPY --from=builder /install /usr/local
+COPY ipard_rag/src/ ./
+COPY ipard_rag/data/ ./data/
+ENV GEMINI_API_KEY=""
+ENV PYTHONUNBUFFERED=1
+EXPOSE 8000
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]

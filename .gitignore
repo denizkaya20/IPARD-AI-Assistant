@@ -1,0 +1,25 @@
+﻿# Veritabanı ve büyük veri dosyaları
+**/chromadb/
+**/chunks/
+**/raw_pdfs/
+**/unique_pdfs/
+*.npy
+*.sqlite3
+*.json
+
+# Windows Cache
+**/%SystemDrive%/
+
+# Python ve IDE
+__pycache__/
+.venv/
+.idea/
+.env
+
+# Word dosyaları
+*.docx
+*.doc
+
+# Data klasörü
+**/data/
+echo "*.pdf" >> .gitignore
