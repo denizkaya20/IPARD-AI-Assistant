@@ -127,7 +127,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 This project is licensed under the Apache 2.0 License - see the LICENSE file for details.
 
 ⚠️ Disclaimer
-This is an independent, community-driven project. The responses are AI-generated and should not be considered official. Always refer to TKDK official resources for authoritative information.
+This is an independent project. Responses are AI-generated and do not constitute official guidance. Always refer to tkdk.gov.tr for authoritative information.
 
 🙏 Acknowledgments
 TKDK for IPARD III documentation
