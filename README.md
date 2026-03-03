@@ -34,26 +34,6 @@ Embeddings	Turkish-E5-Large	Semantic text representation
 Reranking	BGE-reranker-base	Precision improvement
 LLM	Groq API / OpenRouter	Answer generation
 Deployment	Docker + Hugging Face Spaces	Containerized hosting
-📁 Project Structure
-text
-.
-├── 📁 src/
-│   ├── 📄 api.py              # FastAPI backend endpoints
-│   ├── 📄 app.py              # Streamlit frontend interface
-│   ├── 📄 rag_pipeline.py      # Core RAG logic
-│   ├── 📄 build_db.py          # ChromaDB builder
-│   ├── 📄 embed.py             # Embedding generator
-│   ├── 📄 parser.py            # PDF document parser
-│   └── 📄 scraper_sss.py       # FAQ scraper
-├── 📁 data/
-│   ├── 📄 all_chunks.json      # Document chunks (LFS)
-│   ├── 📄 embeddings.npy       # Pre-computed embeddings (LFS)
-│   └── 📁 chromadb/            # Vector database
-├── 📄 Dockerfile                # Container definition
-├── 📄 requirements.txt          # Python dependencies
-├── 📄 start.sh                  # Multi-service launcher
-└── 📄 .gitattributes            # Git LFS configuration
-🛠️ Local Development
 Prerequisites
 Python 3.11+
 
