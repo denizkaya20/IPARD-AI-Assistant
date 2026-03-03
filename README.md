@@ -24,25 +24,6 @@ A powerful **Retrieval-Augmented Generation (RAG)** system designed specifically
 - **Turkish Optimized**: Specifically tuned for Turkish IPARD III documentation
 
 ## 🏗️ System Architecture
-
-```mermaid
-graph TD
-    A[User Query] --> B{Hybrid Search}
-    
-    subgraph B [Retrieval Stage]
-        C[BM25<br/>Keyword Search]
-        D[Semantic Search<br/>Turkish-E5-Large]
-    end
-    
-    B --> E[Reciprocal Rank Fusion<br/>RRF Merge]
-    E --> F[Cross-Encoder Reranking<br/>BGE-reranker-base]
-    F --> G[Top-K Context Selection]
-    G --> H[LLM Generation<br/>Groq API / OpenRouter]
-    H --> I[Streaming Response]
-    
-    style A fill:#d4f1f9
-    style H fill:#c9e7c9
-    style I fill:#ffd966
 🚀 Technology Stack
 Component	Technology	Purpose
 Frontend	Streamlit	Interactive web interface
