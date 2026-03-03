@@ -22,3 +22,6 @@ Thumbs.db
 
 # Debug scripts
 src/debug_*.py
+
+src/data/
+src/__pycache__/
