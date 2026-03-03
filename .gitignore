@@ -1,0 +1,24 @@
+# ChromaDB (container'da üretilir)
+data/chromadb/
+
+# Virtual env
+.venv/
+__pycache__/
+*.pyc
+
+# Env
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# HF cache
+.cache/
+
+# Debug scripts
+src/debug_*.py
