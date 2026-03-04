@@ -19,7 +19,8 @@ jobs:
           git config --global user.name "GitHub Actions"
           git remote remove hf || true
           git remote add hf https://denizkaya2022:$HF_TOKEN@huggingface.co/spaces/denizkaya2022/IPARD-AI-Assistant
-          git filter-branch --force --index-filter \
-            "git rm --cached --ignore-unmatch data/all_chunks.json data/embeddings.npy data/.gitkeep src/data/chromadb/chroma.sqlite3 src/data/all_chunks.json" \
-            --prune-empty --tag-name-filter cat -- --all
-          git push hf main --force
+          git fetch hf main
+          git checkout -b deploy
+          git checkout hf/main -- data/ || true
+          git add data/ || true
+          git push hf deploy:main --force
