@@ -3,12 +3,8 @@ data/chromadb/
 src/data/chromadb/
 
 # Büyük veri dosyaları
-*.npy
 *.sqlite3
-*.json
-data/*.json
 src/data/*.json
-data/*.npy
 src/data/*.npy
 all_chunks.json
 embeddings.npy
