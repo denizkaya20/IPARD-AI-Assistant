@@ -37,3 +37,7 @@ Thumbs.db
 
 # Debug scripts
 src/debug_*.py
+
+# Hugging Face - data klasörünü tamamen hariç tut
+data/
+src/data/
