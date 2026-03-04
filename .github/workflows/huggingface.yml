@@ -11,17 +11,15 @@ jobs:
         with:
           fetch-depth: 0
           lfs: false
+      - name: Install git-filter-repo
+        run: pip install git-filter-repo
       - name: Push to HF
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
+          git filter-repo --force --invert-paths --path data/all_chunks.json --path data/embeddings.npy --path data/.gitkeep
           HF_URL="https://denizkaya2022:${HF_TOKEN}@huggingface.co/spaces/denizkaya2022/IPARD-AI-Assistant"
-          git remote remove hf || true
           git remote add hf "$HF_URL"
-          git fetch hf main || true
-          git checkout -b deploy
-          git checkout hf/main -- data/ 2>/dev/null || true
-          git add data/ 2>/dev/null || true
-          git push hf deploy:main --force
+          git push hf main --force
