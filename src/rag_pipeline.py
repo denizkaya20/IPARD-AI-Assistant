@@ -234,6 +234,63 @@ def _load_system_prompt():
         return "Sen IPARD III konusunda uzman bir asistansın. Türkçe yanıt ver."
 
 SYSTEM_PROMPT = _load_system_prompt()
+
+# ── Identity Question Handler ─────────────────────────────────────────────────
+
+IDENTITY_KEYWORDS = [
+    "sen kimsin", "kim siniz", "kim sin", "siz kimsiniz",
+    "ne yapıyorsun", "ne yapıyorsunuz", "nasıl çalışıyorsun",
+    "bu sistem ne", "bu uygulama ne", "nasıl yardımcı olabilirsin",
+    "hangi konularda yardımcı", "neler yapabilirsin", "ne işe yarıyor",
+    "hangi destekler var", "ipard nedir", "ipard ne",
+    "hangi tedbirler var", "hangi sektörler var",
+]
+
+def is_identity_question(query: str) -> bool:
+    q = query.lower().strip()
+    return any(kw in q for kw in IDENTITY_KEYWORDS)
+
+def answer_identity_question():
+    """Returns a direct answer from system prompt without RAG retrieval."""
+    if not GROQ_API_KEY:
+        return "GROQ_API_KEY is not set."
+    try:
+        response = openai.ChatCompletion.create(
+            model=LLM_MODEL,
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": "Sen kimsin ve hangi konularda yardımcı olabilirsin?"},
+            ],
+            temperature=0.3,
+            max_tokens=512,
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+def answer_identity_question_stream():
+    """Streams a direct answer from system prompt without RAG retrieval."""
+    if not GROQ_API_KEY:
+        yield {"type": "error", "detail": "GROQ_API_KEY is not set."}
+        return
+    try:
+        stream = openai.ChatCompletion.create(
+            model=LLM_MODEL,
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": "Sen kimsin ve hangi konularda yardımcı olabilirsin?"},
+            ],
+            temperature=0.3,
+            max_tokens=512,
+            stream=True,
+        )
+        for chunk in stream:
+            delta = chunk.choices[0].delta.get("content", "")
+            if delta:
+                yield {"type": "token", "text": delta}
+    except Exception as e:
+        yield {"type": "error", "detail": str(e)}
+
 def build_context(chunks):
     """
     Formats retrieved chunks into a structured text context for the LLM.
@@ -308,6 +365,10 @@ def rag_query(query, tedbir=None, doc_type=None, verbose=False):
     """
     Executes the full RAG cycle and returns the answer with metadata.
     """
+    if is_identity_question(query):
+        answer = answer_identity_question()
+        return {"query": query, "answer": answer, "chunks": [], "sources": []}
+
     chunks = hybrid_search(query, FINAL_TOP_K, RERANK_TOP_K, tedbir, doc_type)
 
     if verbose:
@@ -338,6 +399,11 @@ def rag_query_stream(query, tedbir=None, doc_type=None):
     """
     Executes the full RAG cycle and yields results via a stream.
     """
+    if is_identity_question(query):
+        yield {"type": "sources", "sources": []}
+        yield from answer_identity_question_stream()
+        return
+
     chunks = hybrid_search(query, FINAL_TOP_K, RERANK_TOP_K, tedbir, doc_type)
 
     sources = []
