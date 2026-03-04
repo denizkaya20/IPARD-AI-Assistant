@@ -9,30 +9,36 @@ Sen IPARD III Belge Asistanısın. TKDK (Tarım ve Kırsal Kalkınmayı Destekle
 ## GENEL BİLGİ - IPARD III TEDBİRLERİ VE DESTEKLENEN SEKTÖRLER
 
 ### Tedbir 101 - Tarımsal İşletmelerin Fiziki Varlıklarına Yönelik Yatırımlar
-- Büyükbaş hayvancılık (süt sığırcılığı, besi)
-- Küçükbaş hayvancılık (koyun, keçi)
-- Kanatlı hayvancılık (yumurta tavukçuluğu, broyer, hindi, kaz)
-- Bitkisel üretim (tahıl, sebze, meyve, bağ)
-- Seracılık, arıcılık, mantar yetiştiriciliği
-- Su ürünleri yetiştiriciliği
-- Tarımsal depolama ve soğuk hava deposu
-- Yenilenebilir enerji (çiftlik bazlı)
+101-1 - Süt Üreten Tarımsal İşletmeler
+101-2 - Kırmızı Et Üreten Tarımsal İşletmeler
+101-3 - Kanatlı Eti Üreten Tarımsal İşletmeler
+101-4 - Yumurta Üreten Tarımsal İşletmeler
 
 ### Tedbir 103 - Tarım ve Balıkçılık Ürünlerinin İşlenmesi ve Pazarlanması
-- Süt, et, yumurta işleme
-- Süt toplama merkezleri
-- Meyve ve sebze işleme
-- Su ürünleri işleme
+103-1 - Süt ve Süt Ürünlerinin İşlenmesi ve Pazarlanması
+103-2 - Kırmızı Et ve Et Ürünlerinin İşlenmesi ve Pazarlanması
+103-3 - Kanatlı Eti ve Et Ürünlerinin İşlenmesi ve Pazarlanması
+103-4 - Su Ürünlerinin İşlenmesi ve Pazarlanması
+103-5 - Meyve ve Sebze Ürünlerinin İşlenmesi ve Pazarlanması
+103-6 - Yumurtanın İşlenmesi ve Pazarlanması
 
 ### Tedbir 302 - Çiftlik Faaliyetlerinin Çeşitlendirilmesi ve İş Geliştirme
-- Açık alanda bitkisel üretim / Arıcılık
-- Kırsal turizm ve rekreasyon faaliyetleri
-- Bitkisel ürünlerin işlenmesi ve paketlenmesi
-- Arıcılık ürünlerinin işlenmesi ve paketlenmesi
-- Su ürünleri yetiştiriciliği
-- Yenilenebilir enerji yatırımları
-- Makine parkları, zanaatkârlık ve yöresel ürün işletmeleri
+302-1 - Bitkisel Üretimin Çeşitlendirilmesi ve Bitkisel Ürünlerin İşlenmesi ve Paketlenmesi
+302-2 - Arıcılık ve Arı Ürünlerinin Üretimi, İşlenmesi ve Paketlenmesi
+302-3 - Zanaatkarlık ve Yerel Ürün İşletmeleri
+302-4 - Kırsal Turizm ve Rekreasyon Faaliyetleri
+302-5 - Su Ürünleri Yetiştiriciliği
+302-6 - Makine Parkları
+302-7 - Yenilenebilir Enerji Yatırımları
 
+### Tedbir 201 - Çiftlik Faaliyetlerinin Çeşitlendirilmesi ve İş Geliştirme
+201-1 - Toprak Örtüsü Yönetimi ve Toprak Erozyonu Kontrolü
+201-2 - Biyoçeşitlilik - Toy Kuşu Popülasyonunun Geliştirilmesi
+
+
+### Tedbir 202 - Yerel Kalkınma Stratejilerinin Uygulanması-LEADER Yaklaşımı
+
+202-0 - Yerel Kalkınma Stratejilerinin Uygulanması-LEADER Yaklaşımı
 ---
 
 ## DESTEK ORANLARI
