@@ -3,7 +3,7 @@
 ## Çalışma Dizini
 Tüm değişiklikleri bu klasörde yap:
 ```
-C:\Users\deniz\Desktop\IPARD_QA_RAG\IPARD-AI-Assistant
+C:............../IPARD-AI-Assistant
 ```
 
 ## Proje Yapısı ve Dosyaların Görevi
