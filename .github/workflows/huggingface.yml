@@ -2,7 +2,7 @@ name: Sync to Hugging Face Spaces
 on:
   push:
     branches: [main]
-    paths-ignore:  # data klasöründeki değişikliklerde workflow'u tetikleme
+    paths-ignore:  # data klasörü hariç her şeyde çalış
       - 'data/**'
       - 'src/data/**'
   workflow_dispatch:
@@ -14,24 +14,23 @@ jobs:
         with:
           fetch-depth: 0
           lfs: false
-      - name: Push to HF (exclude data folder)
+      - name: Push to HF (without data)
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           
-          # Geçici bir branch oluştur
-          git checkout -b hf-sync
+          # Yeni bir branch oluştur ve data klasörünü kaldır
+          git checkout --orphan temp-branch
+          git rm -rf --cached .
           
-          # data klasörünü bu branch'ten tamamen kaldır
-          git rm -r --cached --ignore-unmatch data/
-          git rm -r --cached --ignore-unmatch src/data/
+          # Sadece data dışındaki dosyaları ekle
+          find . -type f -not -path "./data/*" -not -path "./src/data/*" | xargs git add
           
-          # Değişiklikleri commit et (eğer varsa)
-          git commit -m "Remove data folders for HF sync" || true
+          # Commit yap
+          git commit -m "Sync to HF (without data)"
           
           # HF'a push et
           HF_URL="https://denizkaya2022:${HF_TOKEN}@huggingface.co/spaces/denizkaya2022/IPARD-AI-Assistant"
-          git remote add hf "$HF_URL" 2>/dev/null || git remote set-url hf "$HF_URL"
-          git push hf hf-sync:main --force
+          git push -f "$HF_URL" temp-branch:main
