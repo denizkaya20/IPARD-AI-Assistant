@@ -1,8 +1,10 @@
-# .github/workflows/huggingface.yml dosyasını güncelleyin
 name: Sync to Hugging Face Spaces
 on:
   push:
     branches: [main]
+    paths-ignore:  # data klasöründeki değişikliklerde workflow'u tetikleme
+      - 'data/**'
+      - 'src/data/**'
   workflow_dispatch:
 jobs:
   build-and-push:
@@ -11,17 +13,25 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          lfs: true  # LFS'i aktif et!
-      - name: Push to HF with LFS
+          lfs: false
+      - name: Push to HF (exclude data folder)
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           
-          # LFS dosyalarını çek
-          git lfs pull
+          # Geçici bir branch oluştur
+          git checkout -b hf-sync
           
+          # data klasörünü bu branch'ten tamamen kaldır
+          git rm -r --cached --ignore-unmatch data/
+          git rm -r --cached --ignore-unmatch src/data/
+          
+          # Değişiklikleri commit et (eğer varsa)
+          git commit -m "Remove data folders for HF sync" || true
+          
+          # HF'a push et
           HF_URL="https://denizkaya2022:${HF_TOKEN}@huggingface.co/spaces/denizkaya2022/IPARD-AI-Assistant"
-          git remote add hf "$HF_URL"
-          git push hf main --force
+          git remote add hf "$HF_URL" 2>/dev/null || git remote set-url hf "$HF_URL"
+          git push hf hf-sync:main --force
