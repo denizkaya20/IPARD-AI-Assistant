@@ -17,10 +17,11 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
+          HF_URL="https://denizkaya2022:${HF_TOKEN}@huggingface.co/spaces/denizkaya2022/IPARD-AI-Assistant"
           git remote remove hf || true
-          git remote add hf https://denizkaya2022:$HF_TOKEN@huggingface.co/spaces/denizkaya2022/IPARD-AI-Assistant
-          git fetch hf main
+          git remote add hf "$HF_URL"
+          git fetch hf main || true
           git checkout -b deploy
-          git checkout hf/main -- data/ || true
-          git add data/ || true
+          git checkout hf/main -- data/ 2>/dev/null || true
+          git add data/ 2>/dev/null || true
           git push hf deploy:main --force
