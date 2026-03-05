@@ -142,7 +142,11 @@ with st.sidebar:
 
     st.divider()
     st.markdown("### 💡 Örnek Sorular")
-    for ex in ["Arıcılık projesi için minimum kovan sayısı kaçtır?", "Başvuru için gerekli belgeler nelerdir?","Ödeme öncesi yerinde kontroller neden yapılmaktadır?"]:
+    for ex in [
+        "Bal ve Diğer Arıcılık Ürünlerinin, İşlenmesi ve Paketlenmesi kapsaminda spesifik uygunluk kriterleri nelerdir?",
+        "Başvuru için gerekli belgeler nelerdir?",
+        "Ödeme öncesi yerinde kontroller neden yapılmaktadır?"
+    ]:
         if st.button(ex, use_container_width=True):
             if ex in HARDCODED_ANSWERS:
                 # Direkt hardcoded cevabı göster, API çağrısı yapma
