@@ -38,6 +38,7 @@ Thumbs.db
 # Debug scripts
 src/debug_*.py
 
-# Hugging Face sync - data klasörünü hariç tut
+
 data/
 src/data/
+
