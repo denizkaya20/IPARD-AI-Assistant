@@ -2,6 +2,11 @@ name: Sync to Hugging Face Spaces
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'data/**'
+      - 'src/data/**'
+      - '*.npy'
+      - '*.json'
   workflow_dispatch:
 jobs:
   build-and-push:
@@ -17,6 +22,11 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
+          git config lfs.allowincompletepush true
+          echo "data/" >> .gitignore
+          echo "src/data/" >> .gitignore
+          echo "*.npy" >> .gitignore
+          echo "*.json" >> .gitignore
+          git add .gitignore || true
           HF_URL="https://denizkaya2022:${HF_TOKEN}@huggingface.co/spaces/denizkaya2022/IPARD-AI-Assistant"
-          git remote add hf "$HF_URL"
-          git push hf main --force
+          git push "$HF_URL" main:main --force
