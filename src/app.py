@@ -20,31 +20,39 @@ API_URL = "http://127.0.0.1:8000"
 # Hard-coded answers for example questions (API token tasarrufu)
 # ─────────────────────────────────────────────────────────────
 HARDCODED_ANSWERS = {
-    "Arıcılık projesi için minimum kovan sayısı kaçtır?": {
-        "answer": """Tedbir 101 kapsamında arıcılık yatırımları için minimum **50 adet kovan** şartı aranmaktadır.
+    "Bal ve Diğer Arıcılık Ürünlerinin, İşlenmesi ve Paketlenmesi kapsaminda spesifik uygunluk kriterleri nelerdir?": {
+        "answer": """• Başvuru sahibi, tarımdan başka ekonomik faaliyeti bulunmayan gerçek kişi, bir çiftçi veya çiftlik hanehalkının bir
+üyesi değilse, yatırım kırsal alanlarda olmalıdır.
+ÖNEMLİ UYARI
+* Bu çağrı kapsamında 302-2-2 bal ve diğer arıcılık ürünlerinin işlenmesi ve paketlenmesi alt sektörü desteklenecek
+olup 302-2-1 bal ve diğer arıcılık ürünlerinin üretimi alt sektörü için başvuru yapılamayacaktır. Bal ve diğer
+arıcılık ürünlerinin üretimi faaliyetleri açık alanda bitkisel üretim faaliyetleri ile birlikte ayrı bir çağrı kapsamında
+desteklenecektir.
+* İlgili modifikasyon talebi Avrupa Komisyonuna iletilmiş olup onay süreci devam etmektedir.
+• Bal ve diğer arıcılık ürünlerinin işlenmesi ve paketlenmesi için, yararlanıcı, başvuru sırasında 5996 sayılı Veteriner
+Hizmetleri, Bitki Sağlığı, Gıda ve Yem Kanununa uygun gerekli üretim ve kayıt sertifikalarına sahip olmalıdır. Yeni
+işletmeler için bu prosedür nihai ödeme talebi sırasında tamamlanmalıdır.
 
-Proje sonunda ulaşılması gereken minimum kapasite de 50 kovandır. Başvuru yapabilmek için bu kapasiteye sahip olunması veya yatırım sonunda bu kapasiteye ulaşılması gerekmektedir.
-
-**Kaynak:** Tedbir 101 - Başvuru Çağrı Rehberi""",
+**Kaynak:** Tedbir 302 - Başvuru Çağrı Rehberi""",
         "sources": []
     },
     "Başvuru için gerekli belgeler nelerdir?": {
-        "answer": """IPARD III başvurusu için genel olarak aşağıdaki belgeler gerekmektedir:
-
-**Zorunlu Belgeler:**
-- Başvuru formu (e-devlet üzerinden doldurulur)
-- Kimlik belgesi / imza sirküleri
-- Tapu belgesi veya kira sözleşmesi (yatırım yeri için)
-- Vergi levhası
-- SGK borcu yoktur yazısı
-- Ön Teklif Paketi (ÖTP) kapsamındaki teklifler
-- İşletme belgesi (mevcut işletmeler için)
-- Organik tarım sertifikası (varsa, ek puan için)
-
-**Proje Türüne Göre Ek Belgeler:**
-- Yapı ruhsatı veya izin belgesi
-- Kapasite raporu
-- Hayvan varlığını gösterir belgeler (hayvancılık projeleri için)
+        "answer": """Başvuru sahibi aşağıdaki bilgi ve belgeleri “Başvuru Paketi” şeklinde sunmak zorundadır.
+Başvuru Paketi;
+(a) Başvuru Formu ve ekleri,
+(b) İ ş Planı,
+(c) Teknik Proje’den oluşmaktadır.
+“Başvuru Paketi”nin içeriğinde yer alan belgelere ilişkin ayrıntılı bilgiler ve dikkat edilmesi gereken hususlar TKDK
+web adresinde (www.tkdk.gov.tr) yayımlanan “Başvuru Paketi İçeriği”nde belirtilmiştir.
+İçerisinde “Başvuru Formu, Seçilen ve Seçilmeyen Teklifler, İş Planı ve Teknik Proje” yer almayan başvuru paketleri
+TKDK tarafından teslim alınmayacak ve başvuru kaydı yapılmayacaktır.
+Başvuru paketleri hazırlanırken, TKDK web adresinde (www.tkdk.gov.tr) yayımlanan;
+• Yatırım Kapsamında Uyulması Gereken Koşullar,
+• Teknik Proje Hazırlama Rehberi,
+• Teklif Alma Kuralları Rehberi,
+• İ ş Planı Hazırlama Rehberi,
+• Görünürlük Rehberi.
+• Bilgilendirme Dokümanlarında belirtilen hususlar dikkate alınmalıdır.
 
 Belge listesi başvurulan tedbir ve sektöre göre değişmektedir. Güncel ve kesin liste için ilgili çağrı rehberini incelemenizi tavsiye ederiz.
 
@@ -52,19 +60,12 @@ Belge listesi başvurulan tedbir ve sektöre göre değişmektedir. Güncel ve k
         "sources": []
     },
     "Ödeme öncesi yerinde kontroller neden yapılmaktadır?": {
-        "answer": """Ödeme öncesi yerinde kontroller aşağıdaki amaçlarla yapılmaktadır:
+        "answer": """IPARD Programından alınan mali yardıma ilişkin sözleşme ve Ödeme Talep
+Paketinde (ÖTP) belirtilen verileri doğrulamak ve yatırımın uygulama süresi
+boyunca faydalanıcıya ait taahhütlerin ve yükümlülüklerin yerine getirilip
+getirilmediğini kontrol etmektir.
 
-1. **Fiziki Doğrulama:** Yatırımın fiilen gerçekleştirildiğinin ve beyan edilen harcamaların uygunluğunun teyit edilmesi
-
-2. **Miktar ve Kalite Kontrolü:** Satın alınan makine, ekipman veya yapıların teknik şartnameye uygunluğunun kontrol edilmesi
-
-3. **AB Fonları Güvencesi:** AB katkısı içeren desteklerde fonların doğru kullanıldığının denetlenmesi
-
-4. **Usulsüzlük Önleme:** Sahte veya abartılmış harcama beyanlarının önüne geçilmesi
-
-Yerinde kontrol sırasında eksiklik tespit edilmesi halinde ek süre verilebilir veya eksik kısım uygun harcama dışında tutulabilir.
-
-**Kaynak:** IPARD III - Ödeme ve Kontrol Prosedürleri""",
+**Kaynak:** IPARD III - Ödeme Öncesi Yerinde Kontrol Süreci Ve E3 Harcama Beyani Formu İçin Yönlendirici Rehber""",
         "sources": []
     },
 }
