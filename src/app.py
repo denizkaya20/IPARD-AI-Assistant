@@ -17,6 +17,59 @@ import streamlit as st
 API_URL = "http://127.0.0.1:8000"
 
 # ─────────────────────────────────────────────────────────────
+# Hard-coded answers for example questions (API token tasarrufu)
+# ─────────────────────────────────────────────────────────────
+HARDCODED_ANSWERS = {
+    "Arıcılık projesi için minimum kovan sayısı kaçtır?": {
+        "answer": """Tedbir 101 kapsamında arıcılık yatırımları için minimum **50 adet kovan** şartı aranmaktadır.
+
+Proje sonunda ulaşılması gereken minimum kapasite de 50 kovandır. Başvuru yapabilmek için bu kapasiteye sahip olunması veya yatırım sonunda bu kapasiteye ulaşılması gerekmektedir.
+
+**Kaynak:** Tedbir 101 - Başvuru Çağrı Rehberi""",
+        "sources": []
+    },
+    "Başvuru için gerekli belgeler nelerdir?": {
+        "answer": """IPARD III başvurusu için genel olarak aşağıdaki belgeler gerekmektedir:
+
+**Zorunlu Belgeler:**
+- Başvuru formu (e-devlet üzerinden doldurulur)
+- Kimlik belgesi / imza sirküleri
+- Tapu belgesi veya kira sözleşmesi (yatırım yeri için)
+- Vergi levhası
+- SGK borcu yoktur yazısı
+- Ön Teklif Paketi (ÖTP) kapsamındaki teklifler
+- İşletme belgesi (mevcut işletmeler için)
+- Organik tarım sertifikası (varsa, ek puan için)
+
+**Proje Türüne Göre Ek Belgeler:**
+- Yapı ruhsatı veya izin belgesi
+- Kapasite raporu
+- Hayvan varlığını gösterir belgeler (hayvancılık projeleri için)
+
+Belge listesi başvurulan tedbir ve sektöre göre değişmektedir. Güncel ve kesin liste için ilgili çağrı rehberini incelemenizi tavsiye ederiz.
+
+**Kaynak:** Tedbir 101/103/302 - Başvuru Çağrı Rehberleri""",
+        "sources": []
+    },
+    "Ödeme öncesi yerinde kontroller neden yapılmaktadır?": {
+        "answer": """Ödeme öncesi yerinde kontroller aşağıdaki amaçlarla yapılmaktadır:
+
+1. **Fiziki Doğrulama:** Yatırımın fiilen gerçekleştirildiğinin ve beyan edilen harcamaların uygunluğunun teyit edilmesi
+
+2. **Miktar ve Kalite Kontrolü:** Satın alınan makine, ekipman veya yapıların teknik şartnameye uygunluğunun kontrol edilmesi
+
+3. **AB Fonları Güvencesi:** AB katkısı içeren desteklerde fonların doğru kullanıldığının denetlenmesi
+
+4. **Usulsüzlük Önleme:** Sahte veya abartılmış harcama beyanlarının önüne geçilmesi
+
+Yerinde kontrol sırasında eksiklik tespit edilmesi halinde ek süre verilebilir veya eksik kısım uygun harcama dışında tutulabilir.
+
+**Kaynak:** IPARD III - Ödeme ve Kontrol Prosedürleri""",
+        "sources": []
+    },
+}
+
+# ─────────────────────────────────────────────────────────────
 # Page Settings
 # ─────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -90,7 +143,19 @@ with st.sidebar:
     st.markdown("### 💡 Örnek Sorular")
     for ex in ["Arıcılık projesi için minimum kovan sayısı kaçtır?", "Başvuru için gerekli belgeler nelerdir?","Ödeme öncesi yerinde kontroller neden yapılmaktadır?"]:
         if st.button(ex, use_container_width=True):
-            st.session_state["query_input"] = ex
+            if ex in HARDCODED_ANSWERS:
+                # Direkt hardcoded cevabı göster, API çağrısı yapma
+                hardcoded = HARDCODED_ANSWERS[ex]
+                st.session_state.history.insert(0, {
+                    "query": ex,
+                    "answer": hardcoded["answer"],
+                    "sources": hardcoded["sources"],
+                    "elapsed": 0
+                })
+                st.session_state["query_input"] = ""
+                st.rerun()
+            else:
+                st.session_state["query_input"] = ex
 
 # ─────────────────────────────────────────────────────────────
 # Question Input and Processing
