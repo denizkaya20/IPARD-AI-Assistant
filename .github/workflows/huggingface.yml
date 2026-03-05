@@ -2,11 +2,6 @@ name: Sync to Hugging Face Spaces
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - 'data/**'
-      - 'src/data/**'
-      - '*.npy'
-      - '*.json'
   workflow_dispatch:
 jobs:
   build-and-push:
@@ -16,17 +11,22 @@ jobs:
         with:
           fetch-depth: 0
           lfs: false
-      - name: Push to HF
+      - name: Push to HF (without any LFS or data)
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git config lfs.allowincompletepush true
-          echo "data/" >> .gitignore
-          echo "src/data/" >> .gitignore
-          echo "*.npy" >> .gitignore
-          echo "*.json" >> .gitignore
-          git add .gitignore || true
+          
+          # Yeni bir branch oluştur ve temizle
+          git checkout --orphan clean-branch
+          
+          # Sadece belirli dosyaları ekle (data ve LFS dosyaları hariç)
+          git add .github/ src/ Dockerfile README.md requirements.txt start.sh *.md || true
+          
+          # Commit yap
+          git commit -m "Clean sync to HF" || true
+          
+          # HF'a push et
           HF_URL="https://denizkaya2022:${HF_TOKEN}@huggingface.co/spaces/denizkaya2022/IPARD-AI-Assistant"
-          git push "$HF_URL" main:main --force
+          git push -f "$HF_URL" clean-branch:main
